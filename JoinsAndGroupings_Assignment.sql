@@ -32,7 +32,9 @@ WHERE emp.jobTitle = "Sales Rep"
 GROUP BY emp.employeeNumber                                                             
 ORDER BY `Total Sales` DESC; 
 
-SELECT MONTHNAME(o.orderDate) AS `Month`, YEAR(o.orderDate) AS `Year`, SUM(odtls.quantityOrdered * odtls.priceEach) AS "Payments Received"                                      
-FROM orders o left JOIN orderdetails odtls ON o.orderNumber = odtls.orderNumber                                                                                              
-GROUP BY `Year`,`Month`;                                                                                                                                                     
+SELECT MONTHNAME(o.orderDate) AS `Month`, YEAR(o.orderDate) AS `Year`, FORMAT(SUM(odtls.quantityOrdered * odtls.priceEach),2) AS "Payments Received"
+FROM orders o
+	LEFT JOIN orderdetails odtls ON o.orderNumber = odtls.orderNumber
+GROUP BY `Year`,`Month`
+ORDER BY YEAR(o.orderDate), MONTH(o.orderDate);                                                                                                                                                    
 	                                                                                                                                                                                                                                                                                                                                                  
